@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { Product } from '@/types/product';
 import { pineconeIndex } from '@/utils/pinecone';
 
+export const revalidate = 60; // Cache the response for 60 seconds to avoid dynamic rendering errors
 
 export async function GET() {
     try {
@@ -38,4 +39,3 @@ export async function GET() {
         );
     }
 }
-
