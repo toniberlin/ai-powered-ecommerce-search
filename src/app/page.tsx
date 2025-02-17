@@ -3,7 +3,8 @@ import { Product } from '@/types/product';
 
 async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch('/api/products', { 
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
+    const res = await fetch(`${baseUrl}/api/products`, { 
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
