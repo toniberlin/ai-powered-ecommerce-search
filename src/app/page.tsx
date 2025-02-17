@@ -3,7 +3,7 @@ import { Product } from '@/types/product';
 
 async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch('http://localhost:3000/api/products', { 
+    const res = await fetch('/api/products', { 
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
