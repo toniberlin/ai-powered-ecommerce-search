@@ -39,3 +39,25 @@ export async function GET() {
         );
     }
 }
+export async function POST(req: Request) {
+    try {
+        const { conversationId, query } = await req.json();
+
+        const apiResponse = await fetch("https://sayro-app-server-81c722f0fe6c.herokuapp.com/query", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ conversationId, query }),
+        });
+
+        console.log(apiResponse);
+        if (!apiResponse.ok) {
+            throw new Error(`HTTP error! Status: ${apiResponse.status}`);
+        }
+
+        const data = await apiResponse.json();
+        return NextResponse.json(data);
+    } catch (error) {
+        console.error("Error in API Route:", error);
+        return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
+    }
+}
