@@ -77,7 +77,7 @@ const ChatBox: React.FC = () => {
     };
 
 
-    // @ts-ignore
+    // "@ts-expect-error"
     return (
         <div className="flex flex-col w-full max-w-2xl mx-auto p-4 border rounded-lg shadow-lg bg-white">
             <div className="h-96 overflow-y-auto p-2">
