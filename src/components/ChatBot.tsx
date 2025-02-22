@@ -49,6 +49,9 @@ const ChatBox: React.FC = () => {
 
             const { assistantResponse, conversationId: newConversationId, products } = data;
             if (!conversationId) setConversationId(newConversationId);
+            interface APIProduct {
+                fields: string; 
+            }
 
             setMessages((prev) => {
                 const updatedMessages = [...prev];
@@ -56,28 +59,18 @@ const ChatBox: React.FC = () => {
                     updatedMessages[updatedMessages.length - 1] = {
                         sender: "assistant",
                         text: assistantResponse,
-                        products: products?.map((p) => {
-                            if (typeof p.fields === "string") {
-                                return JSON.parse(p.fields);
-                            }
-                            return null; 
-                        }).filter(Boolean) || []
-
+                        products: products?.map((p: APIProduct) => JSON.parse(p.fields)) || [],
                     };
                 } else {
                     updatedMessages.push({
                         sender: "assistant",
                         text: assistantResponse,
-                        products: products?.map((p) => {
-                            if (typeof p.fields === "string") {
-                                return JSON.parse(p.fields);
-                            }
-                            return null;
-                        }).filter(Boolean) || []
+                        products: products?.map((p: APIProduct) => JSON.parse(p.fields)) || [],
                     });
                 }
                 return updatedMessages;
             });
+
         } catch (error) {
             console.error("Error fetching response:", error);
         }
