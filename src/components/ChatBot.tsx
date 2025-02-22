@@ -56,13 +56,24 @@ const ChatBox: React.FC = () => {
                     updatedMessages[updatedMessages.length - 1] = {
                         sender: "assistant",
                         text: assistantResponse,
-                        products: products?.map((p: any) => JSON.parse(p.fields)) || [],
+                        products: products?.map((p) => {
+                            if (typeof p.fields === "string") {
+                                return JSON.parse(p.fields);
+                            }
+                            return null; 
+                        }).filter(Boolean) || []
+
                     };
                 } else {
                     updatedMessages.push({
                         sender: "assistant",
                         text: assistantResponse,
-                        products: products?.map((p: any) => JSON.parse(p.fields)) || [],
+                        products: products?.map((p) => {
+                            if (typeof p.fields === "string") {
+                                return JSON.parse(p.fields);
+                            }
+                            return null;
+                        }).filter(Boolean) || []
                     });
                 }
                 return updatedMessages;
