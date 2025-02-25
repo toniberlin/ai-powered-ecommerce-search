@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import Image from 'next/image';
 
 interface Message {
     sender: "customer" | "assistant";
@@ -91,7 +92,13 @@ const ChatBox: React.FC = () => {
                                 {msg.products.map((product) => (
                                     <Card key={product.id} className="p-2">
                                         <CardContent>
-                                            <img src={product.image} alt={product.name} className="w-full h-32 object-cover rounded-lg" />
+                                            <Image
+                                                src={product.image}
+                                                alt={product.name}
+                                                fill
+                                                className="object-cover rounded-lg"
+                                                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                                            />
                                             <p className="text-sm font-bold mt-2">{product.name}</p>
                                             <p className="text-sm text-gray-600">${product.price.toFixed(2)}</p>
                                             <a href={product.url} target="_blank" className="text-blue-500 text-sm">View</a>

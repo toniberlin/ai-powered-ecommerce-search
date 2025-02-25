@@ -1,6 +1,6 @@
 # AI-Powered E-commerce Search
 
-A Next.js application that demonstrates AI-powered product search using Pinecone vector database. The application displays a responsive grid of products from Zara's catalog, leveraging vector search capabilities for enhanced product discovery.
+A Next.js application that demonstrates AI-powered product search. The application displays a responsive grid of products from Zara's catalog, leveraging vector search capabilities for enhanced product discovery using an AI powered personal shopping assistant.
 
 ## Features
 
@@ -36,6 +36,9 @@ Before you begin, ensure you have:
 2. **Install dependencies**
    ```bash
    npm install
+   npm install @nextui-org/react framer-motion
+   npm install ahooks 
+   npm install @phosphor-icons/react
    ```
 
 3. **Environment Setup**

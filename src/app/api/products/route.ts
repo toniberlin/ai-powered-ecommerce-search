@@ -8,7 +8,7 @@ export async function GET() {
     try {
         const queryResponse = await pineconeIndex.query({
             vector: Array(1536).fill(0),
-            topK: 20,
+            topK: 5,
             includeMetadata: true,
         });
 
